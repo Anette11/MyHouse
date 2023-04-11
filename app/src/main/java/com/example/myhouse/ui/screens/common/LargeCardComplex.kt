@@ -4,7 +4,10 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,10 +27,9 @@ import com.example.myhouse.R
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun LargeCardSimple(
+fun LargeCardComplex(
     image: Any?,
     name: String,
-    status: String,
     @DrawableRes icon: Int
 ) = Card(
     modifier = Modifier
@@ -55,6 +57,26 @@ fun LargeCardSimple(
                     .height(dimensionResource(id = R.dimen._207dp))
                     .background(colorResource(id = R.color.saturation))
             ) {}
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(dimensionResource(id = R.dimen._207dp)),
+                verticalAlignment = Alignment.Top
+            ) {
+                Icon(
+                    modifier = Modifier.padding(dimensionResource(id = R.dimen._16dp)),
+                    painter = painterResource(id = R.drawable.ic_rec),
+                    contentDescription = stringResource(id = R.string.empty),
+                    tint = colorResource(id = R.color.red)
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(
+                    modifier = Modifier.padding(dimensionResource(id = R.dimen._8dp)),
+                    painter = painterResource(id = R.drawable.ic_star),
+                    contentDescription = stringResource(id = R.string.empty),
+                    tint = colorResource(id = R.color.yellow)
+                )
+            }
             IconButton(onClick = {}) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_play),
@@ -69,28 +91,20 @@ fun LargeCardSimple(
                 .padding(dimensionResource(id = R.dimen._16dp)),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = name,
-                    fontFamily = FontFamily(Font(R.font.circle_regular)),
-                    fontSize = dimensionResource(id = R.dimen._17sp).value.sp,
-                    color = colorResource(id = R.color.gray_darker),
-                    textAlign = TextAlign.Start
-                )
-                Text(
-                    text = status,
-                    fontFamily = FontFamily(Font(R.font.circle_light)),
-                    fontSize = dimensionResource(id = R.dimen._14sp).value.sp,
-                    color = colorResource(id = R.color.gray_light),
-                    textAlign = TextAlign.Start
-                )
-            }
+            Text(
+                modifier = Modifier.weight(1f),
+                text = name,
+                fontFamily = FontFamily(Font(R.font.circle_regular)),
+                fontSize = dimensionResource(id = R.dimen._17sp).value.sp,
+                color = colorResource(id = R.color.gray_darker),
+                textAlign = TextAlign.Start
+            )
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._16dp)))
             IconButton(onClick = { }) {
                 Icon(
                     painter = painterResource(id = icon),
                     contentDescription = stringResource(id = R.string.empty),
-                    tint = colorResource(id = R.color.blue_sky)
+                    tint = colorResource(id = R.color.gray_lighter)
                 )
             }
         }
@@ -99,10 +113,9 @@ fun LargeCardSimple(
 
 @Composable
 @Preview(showBackground = true)
-fun LargeCardSimplePreview() =
-    LargeCardSimple(
-        image = R.drawable.example_picture_1,
-        name = stringResource(id = R.string.door_phone),
-        status = stringResource(id = R.string.online),
-        R.drawable.ic_lock
+fun LargeCardComplexPreview() =
+    LargeCardComplex(
+        image = R.drawable.example_picture_2,
+        name = stringResource(id = R.string.text_example_camera),
+        R.drawable.ic_guard_off
     )

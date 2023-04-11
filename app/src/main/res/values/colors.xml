@@ -12,7 +12,9 @@
     <color name="gray_darker">#555555</color>
     <color name="gray_medium">#F6F6F6</color>
     <color name="gray_light">#999999</color>
+    <color name="gray_lighter">#B6BABF</color>
     <color name="blue_sky">#03A9F4</color>
     <color name="red">#FA3030</color>
     <color name="saturation">#66000000</color>
+    <color name="yellow">#E0BE35</color>
 </resources>
