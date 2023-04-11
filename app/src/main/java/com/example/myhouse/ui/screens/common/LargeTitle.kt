@@ -24,7 +24,7 @@ fun LargeTitle(
         .padding(vertical = dimensionResource(id = R.dimen._29dp)),
     text = text,
     fontSize = dimensionResource(id = R.dimen._21sp).value.sp,
-    fontFamily = FontFamily(Font(R.font.circle)),
+    fontFamily = FontFamily(Font(R.font.circle_regular)),
     color = colorResource(id = R.color.gray_dark),
     textAlign = TextAlign.Center
 )

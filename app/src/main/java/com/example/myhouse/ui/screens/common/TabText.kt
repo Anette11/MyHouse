@@ -16,7 +16,7 @@ fun TabText(
     text: String
 ) = Text(
     text = text,
-    fontFamily = FontFamily(Font(R.font.circle)),
+    fontFamily = FontFamily(Font(R.font.circle_regular)),
     fontSize = dimensionResource(id = R.dimen._17sp).value.sp,
     color = colorResource(id = R.color.gray_dark)
 )
