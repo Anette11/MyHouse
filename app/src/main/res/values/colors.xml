@@ -14,4 +14,5 @@
     <color name="gray_light">#999999</color>
     <color name="blue_sky">#03A9F4</color>
     <color name="red">#FA3030</color>
+    <color name="saturation">#66000000</color>
 </resources>

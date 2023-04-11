@@ -4,11 +4,9 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
@@ -39,16 +37,37 @@ fun LargeCardSimple(
     elevation = dimensionResource(id = R.dimen._4dp)
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        GlideImage(
-            model = image,
-            contentDescription = stringResource(id = R.string.empty),
-            modifier = Modifier.height(dimensionResource(id = R.dimen._207dp)),
-            contentScale = ContentScale.Crop
-        )
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            GlideImage(
+                model = image,
+                contentDescription = stringResource(id = R.string.empty),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(dimensionResource(id = R.dimen._207dp)),
+                contentScale = ContentScale.Crop
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(dimensionResource(id = R.dimen._207dp))
+                    .background(colorResource(id = R.color.saturation))
+            ) {}
+            IconButton(onClick = {}) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_play),
+                    contentDescription = stringResource(id = R.string.empty),
+                    tint = colorResource(id = R.color.white)
+                )
+            }
+        }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen._16dp))
+                .padding(dimensionResource(id = R.dimen._16dp)),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
