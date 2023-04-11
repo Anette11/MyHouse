@@ -6,4 +6,6 @@
     <string name="living_room">Гостиная</string>
     <string name="empty" />
     <string name="text_example">Выход на пожарную лестницу</string>
+    <string name="door_phone">Домофон</string>
+    <string name="online">В сети</string>
 </resources>

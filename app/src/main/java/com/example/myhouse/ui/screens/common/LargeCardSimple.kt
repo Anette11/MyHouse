@@ -1,0 +1,89 @@
+package com.example.myhouse.ui.screens.common
+
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
+import com.example.myhouse.R
+
+@OptIn(ExperimentalGlideComposeApi::class)
+@Composable
+fun LargeCardSimple(
+    image: Any?,
+    name: String,
+    status: String,
+    @DrawableRes icon: Int
+) = Card(
+    modifier = Modifier
+        .fillMaxWidth()
+        .background(colorResource(id = R.color.white)),
+    shape = RoundedCornerShape(dimensionResource(id = R.dimen._12dp)),
+    elevation = dimensionResource(id = R.dimen._4dp)
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        GlideImage(
+            model = image,
+            contentDescription = stringResource(id = R.string.empty),
+            modifier = Modifier.height(dimensionResource(id = R.dimen._207dp)),
+            contentScale = ContentScale.Crop
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(id = R.dimen._16dp))
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = name,
+                    fontFamily = FontFamily(Font(R.font.circle_regular)),
+                    fontSize = dimensionResource(id = R.dimen._17sp).value.sp,
+                    color = colorResource(id = R.color.gray_darker),
+                    textAlign = TextAlign.Start
+                )
+                Text(
+                    text = status,
+                    fontFamily = FontFamily(Font(R.font.circle_light)),
+                    fontSize = dimensionResource(id = R.dimen._14sp).value.sp,
+                    color = colorResource(id = R.color.gray_light),
+                    textAlign = TextAlign.Start
+                )
+            }
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._16dp)))
+            IconButton(onClick = { }) {
+                Icon(
+                    painter = painterResource(id = icon),
+                    contentDescription = stringResource(id = R.string.empty),
+                    tint = colorResource(id = R.color.blue_sky)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun LargeCardSimplePreview() =
+    LargeCardSimple(
+        image = R.drawable.ae76f5b7690814c091a5120fd093183f,
+        name = stringResource(id = R.string.door_phone),
+        status = stringResource(id = R.string.online),
+        R.drawable.ic_lock
+    )
