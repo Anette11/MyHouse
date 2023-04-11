@@ -4,4 +4,6 @@
     <string name="tab_cameras_name">Камеры</string>
     <string name="tab_doors_name">Двери</string>
     <string name="living_room">Гостиная</string>
+    <string name="empty" />
+    <string name="text_example">Выход на пожарную лестницу</string>
 </resources>
