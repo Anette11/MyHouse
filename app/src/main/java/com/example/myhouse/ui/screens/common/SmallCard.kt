@@ -29,7 +29,7 @@ fun SmallCard(
     modifier = Modifier
         .fillMaxWidth()
         .background(colorResource(id = R.color.white)),
-    shape = RoundedCornerShape(dimensionResource(id = R.dimen._16dp)),
+    shape = RoundedCornerShape(dimensionResource(id = R.dimen._12dp)),
     elevation = dimensionResource(id = R.dimen._4dp)
 ) {
     Row(
