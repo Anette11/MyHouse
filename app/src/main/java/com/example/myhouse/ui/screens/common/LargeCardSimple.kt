@@ -30,6 +30,7 @@ fun LargeCardSimple(
 ) = Card(
     modifier = Modifier
         .fillMaxWidth()
+        .padding(vertical = dimensionResource(id = R.dimen._8dp))
         .background(colorResource(id = R.color.white)),
     shape = RoundedCornerShape(dimensionResource(id = R.dimen._12dp)),
     elevation = dimensionResource(id = R.dimen._4dp)
