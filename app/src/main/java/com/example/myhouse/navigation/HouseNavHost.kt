@@ -19,10 +19,12 @@ fun HouseNavHost(
 ) {
     LaunchedEffect(key1 = Unit) {
         navigateToRoute.collectLatest { route ->
-            navController.navigate(route = route)
+            navController.navigateTo(
+                route = route,
+                startDestination = startDestination
+            )
         }
     }
-
     NavHost(
         navController = navController,
         startDestination = startDestination
