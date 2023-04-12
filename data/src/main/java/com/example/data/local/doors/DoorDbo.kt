@@ -1,6 +1,6 @@
-package com.example.data.remote.doors
+package com.example.data.local.doors
 
-data class DataDto(
+data class DoorDbo(
     val favorites: Boolean?,
     val id: Int?,
     val name: String?,
