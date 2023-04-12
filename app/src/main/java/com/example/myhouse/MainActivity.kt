@@ -3,7 +3,7 @@ package com.example.myhouse
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.myhouse.navigation.HouseNavHost
+import com.example.myhouse.ui.screens.main.MainScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
     ) {
         super.onCreate(savedInstanceState)
         setContent {
-            HouseNavHost()
+            MainScreen()
         }
     }
 }
