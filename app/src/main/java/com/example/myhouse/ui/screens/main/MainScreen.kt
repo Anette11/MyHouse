@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.myhouse.R
+import com.example.myhouse.navigation.HouseNavHost
 import com.example.myhouse.ui.screens.common.LargeTitle
 
 @Composable
@@ -28,10 +29,6 @@ fun MainScreen(
     modifier = Modifier.fillMaxSize()
 ) {
     LargeTitle(text = stringResource(id = R.string.my_house))
-    val tabNames = listOf(
-        stringResource(id = R.string.tab_cameras_name),
-        stringResource(id = R.string.tab_doors_name)
-    )
     TabRow(
         selectedTabIndex = viewModel.selectedTabIndex,
         backgroundColor = Color.Transparent,
@@ -43,7 +40,7 @@ fun MainScreen(
             )
         }
     ) {
-        tabNames.forEachIndexed { index, tabName ->
+        viewModel.screens.forEachIndexed { index, screen ->
             val selected = viewModel.selectedTabIndex == index
             Tab(
                 selected = selected,
@@ -51,7 +48,7 @@ fun MainScreen(
             ) {
                 Text(
                     modifier = Modifier.padding(vertical = dimensionResource(id = R.dimen._14dp)),
-                    text = tabName,
+                    text = screen.tabName,
                     fontFamily = FontFamily(Font(R.font.circle_regular)),
                     fontSize = dimensionResource(id = R.dimen._17sp).value.sp,
                     color = colorResource(id = R.color.gray_dark)
@@ -59,4 +56,7 @@ fun MainScreen(
             }
         }
     }
+    HouseNavHost(
+        navigateToRoute = viewModel.navigateToRoute
+    )
 }
