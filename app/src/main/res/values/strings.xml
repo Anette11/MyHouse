@@ -9,4 +9,5 @@
     <string name="text_example_camera">Камера 1</string>
     <string name="door_phone">Домофон</string>
     <string name="online">В сети</string>
+    <string name="not_applicable">n/a</string>
 </resources>
