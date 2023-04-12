@@ -4,6 +4,7 @@ import com.example.data.remote.NetworkWebservice
 import com.example.data.remote.mappers.toCamera
 import com.example.domain.data.Camera
 import com.example.domain.repositories.CamerasRepository
+import timber.log.Timber
 import javax.inject.Inject
 
 class CamerasRepositoryImpl @Inject constructor(
@@ -16,6 +17,7 @@ class CamerasRepositoryImpl @Inject constructor(
             getCamerasResponse.data?.cameras?.map { cameraDto -> cameraDto.toCamera() }
                 ?: emptyList()
         } catch (e: Exception) {
+            Timber.d(e.localizedMessage)
             emptyList()
         }
 }
