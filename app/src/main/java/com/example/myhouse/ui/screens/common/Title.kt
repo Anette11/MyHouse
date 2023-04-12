@@ -21,7 +21,7 @@ fun Title(
 ) = Text(
     modifier = Modifier
         .fillMaxWidth()
-        .padding(vertical = dimensionResource(id = R.dimen._16dp)),
+        .padding(vertical = dimensionResource(id = R.dimen._8dp)),
     text = text,
     fontFamily = FontFamily(Font(R.font.circle_light)),
     fontSize = dimensionResource(id = R.dimen._21sp).value.sp,

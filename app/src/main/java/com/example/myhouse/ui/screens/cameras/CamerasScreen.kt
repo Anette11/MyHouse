@@ -10,6 +10,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.myhouse.R
 import com.example.myhouse.ui.screens.common.LargeCardComplex
+import com.example.myhouse.ui.screens.common.Title
 import com.example.myhouse.ui.screens.util.ScreenItem
 
 @Composable
@@ -30,6 +31,7 @@ fun CamerasScreen(
                     isFavourite = isFavourite
                 )
             }
+            is ScreenItem.TitleItem -> Title(text = screenItem.name)
         }
     }
 }

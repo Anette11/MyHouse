@@ -25,14 +25,25 @@ class CamerasViewModel @Inject constructor(
 
     private fun getCameras() = launch(ioDispatcher) {
         val cameras = repository.getCameras()
-        screenItems = cameras.map { camera ->
-            ScreenItem.CameraItem(
-                image = camera.snapshot,
-                name = camera.name.toStringOrDefault(),
-                isRec = camera.rec.toBooleanOrDefault(),
-                isFavourite = camera.favorites.toBooleanOrDefault()
-            )
-        }
+        screenItems = buildList {
+            cameras
+                .sortedBy { camera -> camera.room }
+                .forEach { camera ->
+                    add(
+                        ScreenItem.TitleItem(
+                            name = camera.room.toStringOrDefault()
+                        )
+                    )
+                    add(
+                        ScreenItem.CameraItem(
+                            image = camera.snapshot,
+                            name = camera.name.toStringOrDefault(),
+                            isRec = camera.rec.toBooleanOrDefault(),
+                            isFavourite = camera.favorites.toBooleanOrDefault()
+                        )
+                    )
+                }
+        }.distinct()
     }
 
     init {

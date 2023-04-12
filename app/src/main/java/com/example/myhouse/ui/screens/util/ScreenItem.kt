@@ -8,4 +8,8 @@ sealed interface ScreenItem {
         val isRec: Boolean,
         val isFavourite: Boolean
     ) : ScreenItem
+
+    data class TitleItem(
+        val name: String
+    ) : ScreenItem
 }
