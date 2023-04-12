@@ -34,12 +34,15 @@ fun LargeCardComplex(
 ) = Card(
     modifier = Modifier
         .fillMaxWidth()
-        .padding(vertical = dimensionResource(id = R.dimen._8dp))
-        .background(colorResource(id = R.color.white)),
+        .padding(vertical = dimensionResource(id = R.dimen._8dp)),
     shape = RoundedCornerShape(dimensionResource(id = R.dimen._12dp)),
     elevation = dimensionResource(id = R.dimen._4dp)
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = colorResource(id = R.color.white))
+    ) {
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center

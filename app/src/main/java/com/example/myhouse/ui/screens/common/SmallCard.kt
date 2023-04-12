@@ -26,14 +26,14 @@ fun SmallCard(
 ) = Card(
     modifier = Modifier
         .fillMaxWidth()
-        .padding(vertical = dimensionResource(id = R.dimen._8dp))
-        .background(colorResource(id = R.color.white)),
+        .padding(vertical = dimensionResource(id = R.dimen._8dp)),
     shape = RoundedCornerShape(dimensionResource(id = R.dimen._12dp)),
     elevation = dimensionResource(id = R.dimen._4dp)
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .background(color = colorResource(id = R.color.white))
             .padding(
                 vertical = dimensionResource(id = R.dimen._21dp),
                 horizontal = dimensionResource(id = R.dimen._16dp)
