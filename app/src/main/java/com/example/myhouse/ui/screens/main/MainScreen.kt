@@ -19,7 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myhouse.R
 import com.example.myhouse.ui.screens.cameras.CamerasScreen
 import com.example.myhouse.ui.screens.common.LargeTitle
@@ -28,7 +28,7 @@ import com.example.myhouse.ui.screens.doors.DoorsScreen
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(
-    viewModel: MainViewModel = hiltViewModel()
+    viewModel: MainViewModel = viewModel()
 ) = Column(
     modifier = Modifier.fillMaxSize()
 ) {

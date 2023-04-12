@@ -7,7 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myhouse.R
 import com.example.myhouse.ui.screens.common.LargeCardComplex
 import com.example.myhouse.ui.screens.common.Title
@@ -15,7 +15,7 @@ import com.example.myhouse.ui.screens.util.ScreenItem
 
 @Composable
 fun CamerasScreen(
-    viewModel: CamerasViewModel = hiltViewModel()
+    viewModel: CamerasViewModel = viewModel()
 ) = LazyColumn(
     modifier = Modifier
         .fillMaxWidth()
