@@ -21,7 +21,10 @@ fun LargeTitle(
 ) = Text(
     modifier = Modifier
         .fillMaxWidth()
-        .padding(vertical = dimensionResource(id = R.dimen._29dp)),
+        .padding(
+            top = dimensionResource(id = R.dimen._29dp),
+            bottom = dimensionResource(id = R.dimen._16dp)
+        ),
     text = text,
     fontSize = dimensionResource(id = R.dimen._21sp).value.sp,
     fontFamily = FontFamily(Font(R.font.circle_regular)),
