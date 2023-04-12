@@ -1,6 +1,5 @@
 package com.example.myhouse.ui.screens.common
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,7 +29,8 @@ import com.example.myhouse.R
 fun LargeCardComplex(
     image: Any?,
     name: String,
-    @DrawableRes icon: Int
+    isRec: Boolean,
+    isFavourite: Boolean
 ) = Card(
     modifier = Modifier
         .fillMaxWidth()
@@ -63,19 +63,23 @@ fun LargeCardComplex(
                     .height(dimensionResource(id = R.dimen._207dp)),
                 verticalAlignment = Alignment.Top
             ) {
-                Icon(
-                    modifier = Modifier.padding(dimensionResource(id = R.dimen._16dp)),
-                    painter = painterResource(id = R.drawable.ic_rec),
-                    contentDescription = stringResource(id = R.string.empty),
-                    tint = colorResource(id = R.color.red)
-                )
+                if (isRec) {
+                    Icon(
+                        modifier = Modifier.padding(dimensionResource(id = R.dimen._16dp)),
+                        painter = painterResource(id = R.drawable.ic_rec),
+                        contentDescription = stringResource(id = R.string.empty),
+                        tint = colorResource(id = R.color.red)
+                    )
+                }
                 Spacer(modifier = Modifier.weight(1f))
-                Icon(
-                    modifier = Modifier.padding(dimensionResource(id = R.dimen._8dp)),
-                    painter = painterResource(id = R.drawable.ic_star),
-                    contentDescription = stringResource(id = R.string.empty),
-                    tint = colorResource(id = R.color.yellow)
-                )
+                if (isFavourite) {
+                    Icon(
+                        modifier = Modifier.padding(dimensionResource(id = R.dimen._8dp)),
+                        painter = painterResource(id = R.drawable.ic_star),
+                        contentDescription = stringResource(id = R.string.empty),
+                        tint = colorResource(id = R.color.yellow)
+                    )
+                }
             }
             IconButton(onClick = {}) {
                 Icon(
@@ -102,7 +106,7 @@ fun LargeCardComplex(
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._16dp)))
             IconButton(onClick = { }) {
                 Icon(
-                    painter = painterResource(id = icon),
+                    painter = painterResource(id = R.drawable.ic_guard_off),
                     contentDescription = stringResource(id = R.string.empty),
                     tint = colorResource(id = R.color.gray_lighter)
                 )
@@ -117,5 +121,6 @@ fun LargeCardComplexPreview() =
     LargeCardComplex(
         image = R.drawable.example_picture_2,
         name = stringResource(id = R.string.text_example_camera),
-        R.drawable.ic_guard_off
+        isRec = true,
+        isFavourite = true
     )
