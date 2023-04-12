@@ -1,6 +1,5 @@
 package com.example.myhouse.ui.screens.common
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,8 +22,7 @@ import com.example.myhouse.R
 
 @Composable
 fun SmallCard(
-    text: String,
-    @DrawableRes icon: Int
+    text: String
 ) = Card(
     modifier = Modifier
         .fillMaxWidth()
@@ -51,7 +49,7 @@ fun SmallCard(
         Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._16dp)))
         IconButton(onClick = { }) {
             Icon(
-                painter = painterResource(id = icon),
+                painter = painterResource(id = R.drawable.ic_lock),
                 contentDescription = stringResource(id = R.string.empty),
                 tint = colorResource(id = R.color.blue_sky)
             )
@@ -63,6 +61,5 @@ fun SmallCard(
 @Preview(showBackground = true)
 fun SmallCardPreview() =
     SmallCard(
-        text = stringResource(id = R.string.text_example),
-        icon = R.drawable.ic_lock
+        text = stringResource(id = R.string.text_example)
     )

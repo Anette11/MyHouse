@@ -12,4 +12,14 @@ sealed interface ScreenItem {
     data class TitleItem(
         val name: String
     ) : ScreenItem
+
+    data class DoorItem(
+        val image: Any?,
+        val name: String,
+        val status: String
+    ) : ScreenItem
+
+    data class SmallItem(
+        val text: String
+    ) : ScreenItem
 }

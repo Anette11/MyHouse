@@ -1,6 +1,5 @@
 package com.example.myhouse.ui.screens.common
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,8 +26,7 @@ import com.example.myhouse.R
 fun LargeCardSimple(
     image: Any?,
     name: String,
-    status: String,
-    @DrawableRes icon: Int
+    status: String
 ) = Card(
     modifier = Modifier
         .fillMaxWidth()
@@ -88,7 +86,7 @@ fun LargeCardSimple(
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._16dp)))
             IconButton(onClick = { }) {
                 Icon(
-                    painter = painterResource(id = icon),
+                    painter = painterResource(id = R.drawable.ic_lock),
                     contentDescription = stringResource(id = R.string.empty),
                     tint = colorResource(id = R.color.blue_sky)
                 )
@@ -103,6 +101,5 @@ fun LargeCardSimplePreview() =
     LargeCardSimple(
         image = R.drawable.example_picture_1,
         name = stringResource(id = R.string.door_phone),
-        status = stringResource(id = R.string.online),
-        R.drawable.ic_lock
+        status = stringResource(id = R.string.online)
     )

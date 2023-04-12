@@ -32,6 +32,7 @@ fun CamerasScreen(
                 )
             }
             is ScreenItem.TitleItem -> Title(text = screenItem.name)
+            else -> Unit
         }
     }
 }
