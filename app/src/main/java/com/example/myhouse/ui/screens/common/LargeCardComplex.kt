@@ -37,7 +37,8 @@ fun LargeCardComplex(
     image: Any?,
     name: String,
     isRec: Boolean,
-    isFavourite: Boolean
+    isFavourite: Boolean,
+    onFavouriteClick: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val swipeableState = rememberSwipeableState(initialValue = 0)
@@ -76,6 +77,7 @@ fun LargeCardComplex(
             IconButtonCircle(
                 onClick = {
                     closeCard()
+                    onFavouriteClick()
                 },
                 icon = R.drawable.ic_favourite_off,
                 tint = R.color.yellow
@@ -190,5 +192,6 @@ fun LargeCardComplexPreview() =
         image = R.drawable.example_picture_2,
         name = stringResource(id = R.string.text_example_camera),
         isRec = true,
-        isFavourite = true
+        isFavourite = true,
+        onFavouriteClick = {}
     )
