@@ -61,7 +61,8 @@ fun MainScreen(
         }
     }
     HorizontalPager(
-        pageCount = viewModel.screens.size
+        pageCount = viewModel.screens.size,
+        userScrollEnabled = false
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             when (viewModel.selectedTabIndex) {
