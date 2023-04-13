@@ -25,6 +25,22 @@ class DoorsViewModel @Inject constructor(
     var screenItems by mutableStateOf(emptyList<ScreenItem>())
         private set
 
+    var showEditDialog by mutableStateOf(false)
+        private set
+
+    fun onShowDialog() {
+        showEditDialog = !showEditDialog
+    }
+
+    var value by mutableStateOf(resourcesProvider.getString(R.string.empty))
+        private set
+
+    fun onValueChange(newValue: String) {
+        value = newValue
+    }
+
+    fun isEnableConfirmButton(): Boolean = value.isNotBlank()
+
     private fun getDoors() = launch(ioDispatcher) {
         val doors = getDoorsUseCase.invoke()
         screenItems = doors.map { door ->

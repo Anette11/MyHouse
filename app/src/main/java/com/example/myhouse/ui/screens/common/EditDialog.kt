@@ -28,7 +28,8 @@ fun EditDialog(
     onValueChange: (String) -> Unit,
     onDismiss: () -> Unit,
     onConfirm: () -> Unit,
-    value: String
+    value: String,
+    enableConfirmButton: Boolean
 ) = Dialog(
     onDismissRequest = {}
 ) {
@@ -80,11 +81,13 @@ fun EditDialog(
                 ) {
                     DialogButton(
                         text = stringResource(id = R.string.cancel),
-                        onClick = onDismiss
+                        onClick = onDismiss,
+                        enable = true
                     )
                     DialogButton(
                         text = stringResource(id = R.string.save),
-                        onClick = onConfirm
+                        onClick = onConfirm,
+                        enable = enableConfirmButton
                     )
                 }
                 Spacer(modifier = Modifier.height(height = dimensionResource(id = R.dimen._36dp)))
@@ -113,7 +116,8 @@ fun EditDialog(
 @Composable
 fun DialogButton(
     text: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    enable: Boolean
 ) = OutlinedButton(
     onClick = onClick,
     border = BorderStroke(
@@ -123,8 +127,10 @@ fun DialogButton(
     shape = RoundedCornerShape(dimensionResource(id = R.dimen._12dp)),
     colors = ButtonDefaults.outlinedButtonColors(
         contentColor = colorResource(id = R.color.white),
-        backgroundColor = colorResource(id = R.color.blue_sky)
-    )
+        backgroundColor = if (enable) colorResource(id = R.color.blue_sky)
+        else colorResource(id = R.color.gray_)
+    ),
+    enabled = enable
 ) {
     Text(
         text = text,
@@ -140,6 +146,7 @@ fun EditDialogPreview() =
     EditDialog(
         onValueChange = {},
         onDismiss = {},
-        onConfirm = { },
-        value = stringResource(id = R.string.empty)
+        onConfirm = {},
+        value = stringResource(id = R.string.empty),
+        enableConfirmButton = false
     )
