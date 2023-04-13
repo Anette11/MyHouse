@@ -14,7 +14,6 @@ import com.example.myhouse.util.launch
 import com.example.myhouse.util.toStringOrDefault
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -62,6 +61,7 @@ class DoorsViewModel @Inject constructor(
                 door = door
             )
         }
+        isRefreshing = false
     }
 
     init {
@@ -73,7 +73,6 @@ class DoorsViewModel @Inject constructor(
 
     fun onRefresh() = launch(ioDispatcher) {
         isRefreshing = true
-        delay(3000L)
-        isRefreshing = false
+        getDoors()
     }
 }

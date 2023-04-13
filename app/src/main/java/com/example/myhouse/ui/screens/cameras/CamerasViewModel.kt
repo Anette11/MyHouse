@@ -12,7 +12,6 @@ import com.example.myhouse.util.toBooleanOrDefault
 import com.example.myhouse.util.toStringOrDefault
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -45,6 +44,7 @@ class CamerasViewModel @Inject constructor(
                     )
                 }
         }.distinct()
+        isRefreshing = false
     }
 
     init {
@@ -56,7 +56,6 @@ class CamerasViewModel @Inject constructor(
 
     fun onRefresh() = launch(ioDispatcher) {
         isRefreshing = true
-        delay(3000L)
-        isRefreshing = false
+        getCameras()
     }
 }
