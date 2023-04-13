@@ -26,7 +26,9 @@ import kotlin.math.roundToInt
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SmallCard(
-    text: String
+    text: String,
+    onEditClick: () -> Unit,
+    onFavouriteClick: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val swipeableState = rememberSwipeableState(initialValue = 0)
@@ -63,13 +65,19 @@ fun SmallCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             IconButtonCircle(
-                onClick = { closeCard() },
+                onClick = {
+                    closeCard()
+                    onEditClick()
+                },
                 icon = R.drawable.ic_edit,
                 tint = R.color.blue_sky
             )
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._29dp)))
             IconButtonCircle(
-                onClick = { closeCard() },
+                onClick = {
+                    closeCard()
+                    onFavouriteClick()
+                },
                 icon = R.drawable.ic_favourite_off,
                 tint = R.color.yellow
             )
@@ -127,6 +135,9 @@ fun SmallCard(
 
 @Composable
 @Preview(showBackground = true)
-fun SmallCardPreview() = SmallCard(
-    text = stringResource(id = R.string.text_example)
-)
+fun SmallCardPreview() =
+    SmallCard(
+        text = stringResource(id = R.string.text_example),
+        onEditClick = {},
+        onFavouriteClick = {}
+    )
