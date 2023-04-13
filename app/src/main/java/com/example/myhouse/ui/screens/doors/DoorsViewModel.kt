@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.domain.data.Door
 import com.example.domain.use_cases.GetDoorsUseCase
 import com.example.myhouse.R
 import com.example.myhouse.di.IODispatcher
@@ -25,11 +26,16 @@ class DoorsViewModel @Inject constructor(
     var screenItems by mutableStateOf(emptyList<ScreenItem>())
         private set
 
-    var showEditDialog by mutableStateOf(false)
+    var showEditDialog by mutableStateOf<Door?>(null)
         private set
 
-    fun onShowDialog() {
-        showEditDialog = !showEditDialog
+    fun showEditDialog(door: Door) {
+        showEditDialog = door
+        onValueChange(door.name ?: resourcesProvider.getString(R.string.empty))
+    }
+
+    fun hideEditDialog() {
+        showEditDialog = null
     }
 
     var value by mutableStateOf(resourcesProvider.getString(R.string.empty))
@@ -51,7 +57,8 @@ class DoorsViewModel @Inject constructor(
                     status = resourcesProvider.getString(R.string.not_applicable)
                 )
             } ?: ScreenItem.SmallItem(
-                text = door.name.toStringOrDefault()
+                text = door.name.toStringOrDefault(),
+                door = door
             )
         }
     }

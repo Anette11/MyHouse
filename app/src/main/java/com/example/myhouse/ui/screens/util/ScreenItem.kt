@@ -1,5 +1,7 @@
 package com.example.myhouse.ui.screens.util
 
+import com.example.domain.data.Door
+
 sealed interface ScreenItem {
 
     data class CameraItem(
@@ -20,6 +22,7 @@ sealed interface ScreenItem {
     ) : ScreenItem
 
     data class SmallItem(
-        val text: String
+        val text: String,
+        val door: Door
     ) : ScreenItem
 }

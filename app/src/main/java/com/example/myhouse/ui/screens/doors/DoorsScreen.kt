@@ -44,7 +44,7 @@ fun DoorsScreen(
                     }
                     is ScreenItem.SmallItem -> SmallCard(
                         text = screenItem.text,
-                        onEditClick = viewModel::onShowDialog,
+                        onEditClick = { viewModel.showEditDialog(door = screenItem.door) },
                         onFavouriteClick = {
                             Toast.makeText(context, "onFavouriteClick", Toast.LENGTH_SHORT).show()
                         }
@@ -53,11 +53,11 @@ fun DoorsScreen(
                 }
             }
         }
-        if (viewModel.showEditDialog) {
+        if (viewModel.showEditDialog != null) {
             EditDialog(
                 onValueChange = viewModel::onValueChange,
-                onDismiss = viewModel::onShowDialog,
-                onConfirm = viewModel::onShowDialog,
+                onDismiss = viewModel::hideEditDialog,
+                onConfirm = viewModel::hideEditDialog,
                 value = viewModel.value,
                 enableConfirmButton = viewModel.isEnableConfirmButton()
             )
