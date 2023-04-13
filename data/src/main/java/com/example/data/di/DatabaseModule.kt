@@ -28,6 +28,8 @@ class DatabaseModule {
         val realmConfiguration = RealmConfiguration
             .Builder()
             .name(realmDbName)
+            .allowQueriesOnUiThread(true)
+            .allowWritesOnUiThread(true)
             .build()
         Realm.setDefaultConfiguration(realmConfiguration)
         return Realm.getDefaultInstance()

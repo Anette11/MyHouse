@@ -11,3 +11,8 @@ annotation class IODispatcher
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 annotation class DefaultDispatcher
+
+@Qualifier
+@MustBeDocumented
+@Retention(AnnotationRetention.RUNTIME)
+annotation class MainDispatcher
