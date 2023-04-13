@@ -20,6 +20,9 @@ android {
         buildConfigField("String", "BASE_URL", "\"http://cars.cprogroup.ru/api/rubetek/\"")
         buildConfigField("String", "CAMERAS", "\"cameras/\"")
         buildConfigField("String", "DOORS", "\"doors/\"")
+
+        buildConfigField("long", "DB_VERSION", "1")
+        buildConfigField("String", "DB_NAME", "\"realm_db\"")
     }
 
     buildTypes {

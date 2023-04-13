@@ -28,20 +28,21 @@ class CamerasRepositoryImpl @Inject constructor(
                 false -> fetchCamerasAnSaveInDatabase()
             }
         } catch (e: Exception) {
-            Timber.d(e.localizedMessage)
+            Timber.d(e.printStackTrace().toString())
         }
 
     override suspend fun refreshCameras() =
         try {
             fetchCamerasAnSaveInDatabase()
         } catch (e: Exception) {
-            Timber.d(e.localizedMessage)
+            Timber.d(e.printStackTrace().toString())
         }
 
     override suspend fun getCamerasFromDatabase(): Flow<List<Camera>> = flow {
-        val cameras = realm.where(CameraDbo::class.java).findAll().toList().map { cameraDbo ->
-            cameraDbo.toCamera()
-        }
+        val cameras = realm.where(CameraDbo::class.java)
+            .findAll()
+            .toList()
+            .map { cameraDbo -> cameraDbo.toCamera() }
         emit(cameras)
     }
 
@@ -50,9 +51,9 @@ class CamerasRepositoryImpl @Inject constructor(
         val newCameras = getCamerasResponse.data?.cameras?.map { cameraDto ->
             cameraDto.toCameraDbo()
         } ?: emptyList()
-        realm.executeTransaction { realm ->
-            realm.delete(CameraDbo::class.java)
-            realm.insert(newCameras)
+        realm.executeTransactionAsync {
+            it.delete(CameraDbo::class.java)
+            it.insert(newCameras)
         }
     }
 }

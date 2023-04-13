@@ -1,4 +1,4 @@
-package com.example.myhouse.di
+package com.example.data.di
 
 import javax.inject.Qualifier
 
@@ -10,9 +10,9 @@ annotation class IODispatcher
 @Qualifier
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
-annotation class DefaultDispatcher
+annotation class MainDispatcher
 
 @Qualifier
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
-annotation class MainDispatcher
+annotation class SingleThreadExecutor

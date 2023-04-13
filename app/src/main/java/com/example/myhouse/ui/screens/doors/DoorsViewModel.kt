@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.domain.data.Door
 import com.example.domain.use_cases.GetDoorsUseCase
 import com.example.myhouse.R
-import com.example.myhouse.di.IODispatcher
+import com.example.data.di.IODispatcher
 import com.example.myhouse.ui.screens.util.ScreenItem
 import com.example.myhouse.util.ResourcesProvider
 import com.example.myhouse.util.launch
