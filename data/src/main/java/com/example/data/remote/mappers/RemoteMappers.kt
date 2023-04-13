@@ -6,17 +6,17 @@ import com.example.data.remote.cameras.CameraDto
 import com.example.data.remote.doors.DoorDto
 import com.example.domain.data.Camera
 import com.example.domain.data.Door
+import java.util.*
 
 fun CameraDto.toCameraDbo() =
-    with(this) {
-        CameraDbo(
-            favorites = favorites,
-            id = id,
-            name = name,
-            rec = rec,
-            room = room,
-            snapshot = snapshot
-        )
+    CameraDbo().apply {
+        dbId = UUID.randomUUID().toString()
+        favorites = this@toCameraDbo.favorites
+        id = this@toCameraDbo.id
+        name = this@toCameraDbo.name
+        rec = this@toCameraDbo.rec
+        room = this@toCameraDbo.room
+        snapshot = this@toCameraDbo.snapshot
     }
 
 fun CameraDto.toCamera() =
@@ -32,14 +32,13 @@ fun CameraDto.toCamera() =
     }
 
 fun DoorDto.toDoorDbo() =
-    with(this) {
-        DoorDbo(
-            favorites = favorites,
-            id = id,
-            name = name,
-            room = room,
-            snapshot = snapshot
-        )
+    DoorDbo().apply {
+        dbId = UUID.randomUUID().toString()
+        favorites = this@toDoorDbo.favorites
+        id = this@toDoorDbo.id
+        name = this@toDoorDbo.name
+        room = this@toDoorDbo.room
+        snapshot = this@toDoorDbo.snapshot
     }
 
 fun DoorDto.toDoor() =
