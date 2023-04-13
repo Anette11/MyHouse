@@ -1,6 +1,5 @@
 package com.example.data.di
 
-import android.util.Log
 import com.example.data.remote.NetworkWebservice
 import dagger.Module
 import dagger.Provides
@@ -10,6 +9,7 @@ import io.ktor.client.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.gson.*
+import timber.log.Timber
 import javax.inject.Singleton
 
 @Module
@@ -25,7 +25,7 @@ class NetworkModule {
         install(Logging) {
             logger = object : Logger {
                 override fun log(message: String) {
-                    Log.d(this.javaClass.name, message)
+                    Timber.d(message)
                 }
             }
             level = LogLevel.ALL
