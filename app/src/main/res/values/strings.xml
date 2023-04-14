@@ -1,18 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="app_name">Мой дом</string>
-    <string name="my_house">Мой дом</string>
-    <string name="tab_cameras_name">Камеры</string>
-    <string name="tab_doors_name">Двери</string>
-    <string name="living_room">Гостиная</string>
+    <string name="cancel">Отмена</string>
+    <string name="door_phone">Домофон</string>
+    <string name="edit_dialog_label">Новое имя двери</string>
     <string name="empty" />
+    <string name="error_happened">Произошла ошибка</string>
+    <string name="living_room">Гостиная</string>
+    <string name="my_house">Мой дом</string>
+    <string name="not_applicable">n/a</string>
+    <string name="online">В сети</string>
+    <string name="rename_door">Переименовать дверь</string>
+    <string name="save">Сохранить</string>
+    <string name="tab_cameras_name">Камеры</string>
     <string name="text_example">Выход на пожарную лестницу</string>
     <string name="text_example_camera">Камера 1</string>
-    <string name="door_phone">Домофон</string>
-    <string name="online">В сети</string>
-    <string name="not_applicable">n/a</string>
-    <string name="rename_door">Переименовать дверь</string>
-    <string name="cancel">Отмена</string>
-    <string name="save">Сохранить</string>
-    <string name="edit_dialog_label">Новое имя двери</string>
-    <string name="error_happened">Произошла ошибка</string>
 </resources>
