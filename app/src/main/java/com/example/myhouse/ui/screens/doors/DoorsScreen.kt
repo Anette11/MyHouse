@@ -50,7 +50,9 @@ fun DoorsScreen(
                             image = image,
                             name = name,
                             status = status,
-                            isFavourite = isFavourite
+                            isFavourite = isFavourite,
+                            onEditClick = { viewModel.showEditDialog(door = door) },
+                            onFavouriteClick = { viewModel.updateDoorIsFavourite(door = door) }
                         )
                     }
                     is ScreenItem.SmallItem -> with(screenItem) {
