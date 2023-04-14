@@ -6,16 +6,22 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.data.di.MainDispatcher
 import com.example.domain.data.Camera
+import com.example.domain.repositories.NetworkResult
 import com.example.domain.use_cases.cameras.GetCamerasFromDatabaseUseCaseAsync
 import com.example.domain.use_cases.cameras.GetInitialCamerasUseCase
 import com.example.domain.use_cases.cameras.RefreshCamerasUseCase
 import com.example.domain.use_cases.cameras.UpdateCameraUseCase
+import com.example.myhouse.R
 import com.example.myhouse.ui.screens.util.ScreenItem
+import com.example.myhouse.util.ResourcesProvider
 import com.example.myhouse.util.launch
 import com.example.myhouse.util.toBooleanOrDefault
 import com.example.myhouse.util.toStringOrDefault
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,7 +30,8 @@ class CamerasViewModel @Inject constructor(
     private val refreshCamerasUseCase: RefreshCamerasUseCase,
     private val getCamerasFromDatabaseUseCaseAsync: GetCamerasFromDatabaseUseCaseAsync,
     private val updateCameraUseCase: UpdateCameraUseCase,
-    @MainDispatcher private val mainDispatcher: CoroutineDispatcher
+    @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
+    private val resourcesProvider: ResourcesProvider
 ) : ViewModel() {
 
     var screenItems by mutableStateOf(emptyList<ScreenItem>())
@@ -32,6 +39,14 @@ class CamerasViewModel @Inject constructor(
 
     var isRefreshing by mutableStateOf(false)
         private set
+
+    var isLoading by mutableStateOf(false)
+        private set
+
+    private val _isError: MutableSharedFlow<Boolean> = MutableSharedFlow()
+    val isError: SharedFlow<Boolean> = _isError
+
+    val defaultErrorText = resourcesProvider.getString(R.string.error_happened)
 
     private fun refreshCameras() = launch(mainDispatcher) {
         refreshCamerasUseCase.invoke()
@@ -81,7 +96,16 @@ class CamerasViewModel @Inject constructor(
         getCamerasFromDatabaseAsync()
 
         launch(mainDispatcher) {
-            getInitialCamerasUseCase.invoke()
+            getInitialCamerasUseCase.invoke().collectLatest { networkResult ->
+                when (networkResult) {
+                    is NetworkResult.Failure -> {
+                        isLoading = false
+                        _isError.emit(true)
+                    }
+                    is NetworkResult.Loading -> isLoading = true
+                    is NetworkResult.Success -> isLoading = false
+                }
+            }
         }
     }
 }
