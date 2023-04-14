@@ -1,6 +1,5 @@
 package com.example.myhouse.ui.screens.doors
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +25,7 @@ import com.example.myhouse.ui.screens.common.LargeCardSimple
 import com.example.myhouse.ui.screens.common.SmallCard
 import com.example.myhouse.ui.screens.common.Title
 import com.example.myhouse.ui.screens.util.ScreenItem
+import com.example.myhouse.util.showToast
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -37,9 +37,7 @@ fun DoorsScreen(
 
     LaunchedEffect(key1 = Unit) {
         viewModel.isError.collectLatest { boolean ->
-            if (boolean) {
-                Toast.makeText(context, viewModel.defaultErrorText, Toast.LENGTH_SHORT).show()
-            }
+            if (boolean) context.showToast(message = viewModel.defaultErrorText)
         }
     }
 
