@@ -1,8 +1,8 @@
 package com.example.data.repositories
 
 import com.example.data.local.cameras.CamerasDao
-import com.example.data.local.mappers.toCamera
-import com.example.data.local.mappers.toCameraDbo
+import com.example.data.local.cameras.toCamera
+import com.example.data.local.cameras.toCameraDbo
 import com.example.data.remote.NetworkWebservice
 import com.example.data.remote.mappers.toCameraDbo
 import com.example.domain.data.Camera
