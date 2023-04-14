@@ -34,12 +34,16 @@ class DoorsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun refreshDoors() =
+    override suspend fun refreshDoors(): Flow<NetworkResult> = flow {
+        emit(NetworkResult.Loading)
         try {
             fetchDoorsAndSaveInDatabase()
+            emit(NetworkResult.Success)
         } catch (e: Exception) {
             Timber.d(e.printStackTrace().toString())
+            emit(NetworkResult.Failure)
         }
+    }
 
     override suspend fun getDoorsFromDatabaseAsync(): Flow<List<Door>> =
         doorsDao.getDoorsFromDatabaseAsync()

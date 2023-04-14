@@ -48,14 +48,17 @@ class CamerasViewModel @Inject constructor(
 
     val defaultErrorText = resourcesProvider.getString(R.string.error_happened)
 
-    private fun refreshCameras() = launch(mainDispatcher) {
-        refreshCamerasUseCase.invoke()
-        isRefreshing = false
-    }
-
-    fun onRefresh() = launch(mainDispatcher) {
-        isRefreshing = true
-        refreshCameras()
+    fun refreshCameras() = launch(mainDispatcher) {
+        refreshCamerasUseCase.invoke().collectLatest { networkResult ->
+            when (networkResult) {
+                is NetworkResult.Failure -> {
+                    isRefreshing = false
+                    _isError.emit(true)
+                }
+                is NetworkResult.Loading -> isRefreshing = true
+                is NetworkResult.Success -> isRefreshing = false
+            }
+        }
     }
 
     private fun getCamerasFromDatabaseAsync() = launch(mainDispatcher) {

@@ -8,7 +8,7 @@ interface DoorsRepository {
 
     suspend fun getInitialDoors(): Flow<NetworkResult>
 
-    suspend fun refreshDoors()
+    suspend fun refreshDoors(): Flow<NetworkResult>
 
     suspend fun getDoorsFromDatabaseAsync(): Flow<List<Door>>
 

@@ -48,14 +48,17 @@ class DoorsViewModel @Inject constructor(
 
     val defaultErrorText = resourcesProvider.getString(R.string.error_happened)
 
-    private fun refreshDoors() = launch(mainDispatcher) {
-        refreshDoorsUseCase.invoke()
-        isRefreshing = false
-    }
-
-    fun onRefresh() = launch(mainDispatcher) {
-        isRefreshing = true
-        refreshDoors()
+    fun refreshDoors() = launch(mainDispatcher) {
+        refreshDoorsUseCase.invoke().collectLatest { networkResult ->
+            when (networkResult) {
+                is NetworkResult.Failure -> {
+                    isRefreshing = false
+                    _isError.emit(true)
+                }
+                is NetworkResult.Loading -> isRefreshing = true
+                is NetworkResult.Success -> isRefreshing = false
+            }
+        }
     }
 
     var showEditDialog by mutableStateOf<Door?>(null)

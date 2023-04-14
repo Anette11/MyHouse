@@ -43,7 +43,7 @@ fun CamerasScreen(
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = viewModel.isRefreshing,
-        onRefresh = viewModel::onRefresh
+        onRefresh = viewModel::refreshCameras
     )
     Box(
         modifier = Modifier

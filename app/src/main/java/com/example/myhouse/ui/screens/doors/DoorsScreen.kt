@@ -42,10 +42,10 @@ fun DoorsScreen(
             }
         }
     }
-    
+
     val pullRefreshState = rememberPullRefreshState(
         refreshing = viewModel.isRefreshing,
-        onRefresh = viewModel::onRefresh
+        onRefresh = viewModel::refreshDoors
     )
     Box(
         modifier = Modifier

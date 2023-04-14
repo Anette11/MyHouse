@@ -34,12 +34,16 @@ class CamerasRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun refreshCameras() =
+    override suspend fun refreshCameras(): Flow<NetworkResult> = flow {
+        emit(NetworkResult.Loading)
         try {
             fetchCamerasAndSaveInDatabase()
+            emit(NetworkResult.Success)
         } catch (e: Exception) {
             Timber.d(e.printStackTrace().toString())
+            emit(NetworkResult.Failure)
         }
+    }
 
     override suspend fun getCamerasFromDatabaseAsync(): Flow<List<Camera>> =
         camerasDao.getCamerasFromDatabaseAsync()
