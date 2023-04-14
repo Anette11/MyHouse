@@ -130,6 +130,24 @@ fun SmallCard(
                     }
                 }
             }
+            if (isFavourite) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        modifier = Modifier.padding(
+                            top = dimensionResource(id = R.dimen._16dp),
+                            end = dimensionResource(id = R.dimen._8dp)
+                        ),
+                        painter = painterResource(id = R.drawable.ic_star),
+                        contentDescription = stringResource(id = R.string.empty),
+                        tint = colorResource(id = R.color.yellow)
+                    )
+                }
+            }
         }
     }
 }
