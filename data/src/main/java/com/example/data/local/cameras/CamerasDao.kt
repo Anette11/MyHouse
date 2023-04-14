@@ -9,9 +9,9 @@ class CamerasDao(
 ) {
     fun updateCamerasInDatabase(
         newList: List<CameraDbo>
-    ): RealmAsyncTask = realm.executeTransactionAsync {
-        it.delete(CameraDbo::class.java)
-        it.insert(newList)
+    ): RealmAsyncTask = realm.executeTransactionAsync { realm ->
+        realm.delete(CameraDbo::class.java)
+        realm.insert(newList)
     }
 
     fun getCamerasFromDatabase(): List<CameraDbo> =
