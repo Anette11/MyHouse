@@ -98,7 +98,7 @@ class DoorsViewModel @Inject constructor(
         }
     }
 
-    fun updateDoor(door: Door) = launch(mainDispatcher) {
+    fun updateDoorIsFavourite(door: Door) = launch(mainDispatcher) {
         updateDoorUseCase.invoke(
             door = door.copy(
                 favorites = door.favorites?.not() ?: true

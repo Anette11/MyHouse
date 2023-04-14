@@ -58,7 +58,7 @@ fun DoorsScreen(
                             text = text,
                             isFavourite = isFavourite,
                             onEditClick = { viewModel.showEditDialog(door = door) },
-                            onFavouriteClick = { viewModel.updateDoor(door = door) }
+                            onFavouriteClick = { viewModel.updateDoorIsFavourite(door = door) }
                         )
                     }
                     is ScreenItem.TitleItem -> Title(text = screenItem.name)
