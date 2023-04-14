@@ -1,4 +1,4 @@
-package com.example.domain.use_cases
+package com.example.domain.use_cases.doors
 
 import com.example.domain.data.Door
 import com.example.domain.repositories.DoorsRepository

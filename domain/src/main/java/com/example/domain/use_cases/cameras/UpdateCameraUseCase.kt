@@ -1,4 +1,4 @@
-package com.example.domain.use_cases
+package com.example.domain.use_cases.cameras
 
 import com.example.domain.data.Camera
 import com.example.domain.repositories.CamerasRepository

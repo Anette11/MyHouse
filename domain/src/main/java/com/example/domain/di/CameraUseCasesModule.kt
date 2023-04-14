@@ -1,10 +1,10 @@
 package com.example.domain.di
 
 import com.example.domain.repositories.CamerasRepository
-import com.example.domain.use_cases.GetCamerasFromDatabaseUseCaseAsync
-import com.example.domain.use_cases.GetInitialCamerasUseCase
-import com.example.domain.use_cases.RefreshCamerasUseCase
-import com.example.domain.use_cases.UpdateCameraUseCase
+import com.example.domain.use_cases.cameras.GetCamerasFromDatabaseUseCaseAsync
+import com.example.domain.use_cases.cameras.GetInitialCamerasUseCase
+import com.example.domain.use_cases.cameras.RefreshCamerasUseCase
+import com.example.domain.use_cases.cameras.UpdateCameraUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

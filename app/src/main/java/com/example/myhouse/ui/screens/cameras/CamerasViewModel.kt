@@ -6,10 +6,10 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.data.di.MainDispatcher
 import com.example.domain.data.Camera
-import com.example.domain.use_cases.GetCamerasFromDatabaseUseCaseAsync
-import com.example.domain.use_cases.GetInitialCamerasUseCase
-import com.example.domain.use_cases.RefreshCamerasUseCase
-import com.example.domain.use_cases.UpdateCameraUseCase
+import com.example.domain.use_cases.cameras.GetCamerasFromDatabaseUseCaseAsync
+import com.example.domain.use_cases.cameras.GetInitialCamerasUseCase
+import com.example.domain.use_cases.cameras.RefreshCamerasUseCase
+import com.example.domain.use_cases.cameras.UpdateCameraUseCase
 import com.example.myhouse.ui.screens.util.ScreenItem
 import com.example.myhouse.util.launch
 import com.example.myhouse.util.toBooleanOrDefault

@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.domain.data.Door
-import com.example.domain.use_cases.GetDoorsUseCase
+import com.example.domain.use_cases.doors.GetDoorsUseCase
 import com.example.myhouse.R
 import com.example.data.di.IODispatcher
 import com.example.myhouse.ui.screens.util.ScreenItem
