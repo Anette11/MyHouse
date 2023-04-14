@@ -1,18 +1,22 @@
 package com.example.myhouse.ui.screens.doors
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,12 +26,23 @@ import com.example.myhouse.ui.screens.common.LargeCardSimple
 import com.example.myhouse.ui.screens.common.SmallCard
 import com.example.myhouse.ui.screens.common.Title
 import com.example.myhouse.ui.screens.util.ScreenItem
+import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DoorsScreen(
     viewModel: DoorsViewModel = viewModel()
 ) {
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.isError.collectLatest { boolean ->
+            if (boolean) {
+                Toast.makeText(context, viewModel.defaultErrorText, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    
     val pullRefreshState = rememberPullRefreshState(
         refreshing = viewModel.isRefreshing,
         onRefresh = viewModel::onRefresh
@@ -84,5 +99,9 @@ fun DoorsScreen(
             modifier = Modifier.align(Alignment.TopCenter),
             contentColor = colorResource(id = R.color.blue_sky)
         )
+
+        if (viewModel.isLoading) {
+            CircularProgressIndicator(color = colorResource(id = R.color.blue_sky))
+        }
     }
 }

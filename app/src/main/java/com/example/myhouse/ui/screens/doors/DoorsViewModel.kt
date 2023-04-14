@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.data.di.MainDispatcher
 import com.example.domain.data.Door
+import com.example.domain.repositories.NetworkResult
 import com.example.domain.use_cases.doors.GetDoorsFromDatabaseUseCaseAsync
 import com.example.domain.use_cases.doors.GetInitialDoorsUseCase
 import com.example.domain.use_cases.doors.RefreshDoorsUseCase
@@ -18,6 +19,9 @@ import com.example.myhouse.util.toBooleanOrDefault
 import com.example.myhouse.util.toStringOrDefault
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,6 +39,14 @@ class DoorsViewModel @Inject constructor(
 
     var isRefreshing by mutableStateOf(false)
         private set
+
+    var isLoading by mutableStateOf(false)
+        private set
+
+    private val _isError: MutableSharedFlow<Boolean> = MutableSharedFlow()
+    val isError: SharedFlow<Boolean> = _isError
+
+    val defaultErrorText = resourcesProvider.getString(R.string.error_happened)
 
     private fun refreshDoors() = launch(mainDispatcher) {
         refreshDoorsUseCase.invoke()
@@ -127,7 +139,16 @@ class DoorsViewModel @Inject constructor(
         getDoorsFromDatabaseAsync()
 
         launch(mainDispatcher) {
-            getInitialDoorsUseCase.invoke()
+            getInitialDoorsUseCase.invoke().collectLatest { networkResult ->
+                when (networkResult) {
+                    is NetworkResult.Failure -> {
+                        isLoading = false
+                        _isError.emit(true)
+                    }
+                    is NetworkResult.Loading -> isLoading = true
+                    is NetworkResult.Success -> isLoading = false
+                }
+            }
         }
     }
 }

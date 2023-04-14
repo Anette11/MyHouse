@@ -31,7 +31,7 @@ class CamerasViewModel @Inject constructor(
     private val getCamerasFromDatabaseUseCaseAsync: GetCamerasFromDatabaseUseCaseAsync,
     private val updateCameraUseCase: UpdateCameraUseCase,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
-    private val resourcesProvider: ResourcesProvider
+    resourcesProvider: ResourcesProvider
 ) : ViewModel() {
 
     var screenItems by mutableStateOf(emptyList<ScreenItem>())
