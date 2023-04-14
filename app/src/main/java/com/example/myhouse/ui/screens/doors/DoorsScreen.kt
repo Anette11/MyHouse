@@ -48,8 +48,7 @@ fun DoorsScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .pullRefresh(state = pullRefreshState),
-        contentAlignment = Alignment.Center
+            .pullRefresh(state = pullRefreshState)
     ) {
         LazyColumn(
             modifier = Modifier
@@ -99,7 +98,12 @@ fun DoorsScreen(
         )
 
         if (viewModel.isLoading) {
-            CircularProgressIndicator(color = colorResource(id = R.color.blue_sky))
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(color = colorResource(id = R.color.blue_sky))
+            }
         }
     }
 }
