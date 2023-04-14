@@ -83,7 +83,8 @@ class DoorsViewModel @Inject constructor(
                                 ScreenItem.DoorItem(
                                     image = door.snapshot,
                                     name = door.name.toStringOrDefault(),
-                                    status = resourcesProvider.getString(R.string.not_applicable)
+                                    status = resourcesProvider.getString(R.string.not_applicable),
+                                    isFavourite = door.favorites.toBooleanOrDefault()
                                 )
                             } ?: ScreenItem.SmallItem(
                                 text = door.name.toStringOrDefault(),

@@ -20,7 +20,8 @@ sealed interface ScreenItem {
     data class DoorItem(
         val image: Any?,
         val name: String,
-        val status: String
+        val status: String,
+        val isFavourite: Boolean
     ) : ScreenItem
 
     data class SmallItem(

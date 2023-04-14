@@ -49,7 +49,8 @@ fun DoorsScreen(
                         LargeCardSimple(
                             image = image,
                             name = name,
-                            status = status
+                            status = status,
+                            isFavourite = isFavourite
                         )
                     }
                     is ScreenItem.SmallItem -> with(screenItem) {

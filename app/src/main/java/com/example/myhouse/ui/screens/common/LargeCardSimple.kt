@@ -26,7 +26,8 @@ import com.example.myhouse.R
 fun LargeCardSimple(
     image: Any?,
     name: String,
-    status: String
+    status: String,
+    isFavourite: Boolean
 ) = Card(
     modifier = Modifier
         .fillMaxWidth()
@@ -55,8 +56,19 @@ fun LargeCardSimple(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(dimensionResource(id = R.dimen._207dp))
-                    .background(colorResource(id = R.color.saturation))
-            ) {}
+                    .background(colorResource(id = R.color.saturation)),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.Top
+            ) {
+                if (isFavourite) {
+                    Icon(
+                        modifier = Modifier.padding(dimensionResource(id = R.dimen._8dp)),
+                        painter = painterResource(id = R.drawable.ic_star),
+                        contentDescription = stringResource(id = R.string.empty),
+                        tint = colorResource(id = R.color.yellow)
+                    )
+                }
+            }
             IconButton(onClick = {}) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_play),
@@ -105,5 +117,6 @@ fun LargeCardSimplePreview() =
     LargeCardSimple(
         image = R.drawable.example_picture_1,
         name = stringResource(id = R.string.door_phone),
-        status = stringResource(id = R.string.online)
+        status = stringResource(id = R.string.online),
+        isFavourite = true
     )
