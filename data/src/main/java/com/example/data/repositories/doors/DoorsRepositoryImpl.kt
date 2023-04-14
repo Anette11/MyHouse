@@ -1,10 +1,10 @@
-package com.example.data.repositories
+package com.example.data.repositories.doors
 
 import com.example.data.local.doors.DoorsDao
 import com.example.data.remote.NetworkWebservice
 import com.example.data.remote.doors.toDoor
 import com.example.domain.data.Door
-import com.example.domain.repositories.DoorsRepository
+import com.example.domain.repositories.doors.DoorsRepository
 import timber.log.Timber
 import javax.inject.Inject
 

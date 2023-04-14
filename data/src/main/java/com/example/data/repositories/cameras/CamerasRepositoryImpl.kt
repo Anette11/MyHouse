@@ -1,4 +1,4 @@
-package com.example.data.repositories
+package com.example.data.repositories.cameras
 
 import com.example.data.local.cameras.CamerasDao
 import com.example.data.local.cameras.toCamera
@@ -6,7 +6,7 @@ import com.example.data.local.cameras.toCameraDbo
 import com.example.data.remote.NetworkWebservice
 import com.example.data.remote.cameras.toCameraDbo
 import com.example.domain.data.Camera
-import com.example.domain.repositories.CamerasRepository
+import com.example.domain.repositories.cameras.CamerasRepository
 import io.realm.kotlin.toFlow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

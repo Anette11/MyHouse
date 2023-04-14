@@ -1,9 +1,9 @@
 package com.example.data.di
 
-import com.example.data.repositories.CamerasRepositoryImpl
-import com.example.data.repositories.DoorsRepositoryImpl
-import com.example.domain.repositories.CamerasRepository
-import com.example.domain.repositories.DoorsRepository
+import com.example.data.repositories.cameras.CamerasRepositoryImpl
+import com.example.data.repositories.doors.DoorsRepositoryImpl
+import com.example.domain.repositories.cameras.CamerasRepository
+import com.example.domain.repositories.doors.DoorsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

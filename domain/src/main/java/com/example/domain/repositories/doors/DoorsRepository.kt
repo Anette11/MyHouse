@@ -1,4 +1,4 @@
-package com.example.domain.repositories
+package com.example.domain.repositories.doors
 
 import com.example.domain.data.Door
 

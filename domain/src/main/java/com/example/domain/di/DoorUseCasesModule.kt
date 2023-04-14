@@ -1,6 +1,6 @@
 package com.example.domain.di
 
-import com.example.domain.repositories.DoorsRepository
+import com.example.domain.repositories.doors.DoorsRepository
 import com.example.domain.use_cases.*
 import com.example.domain.use_cases.doors.GetDoorsUseCase
 import dagger.Module

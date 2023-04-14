@@ -1,6 +1,6 @@
 package com.example.domain.di
 
-import com.example.domain.repositories.CamerasRepository
+import com.example.domain.repositories.cameras.CamerasRepository
 import com.example.domain.use_cases.cameras.GetCamerasFromDatabaseUseCaseAsync
 import com.example.domain.use_cases.cameras.GetInitialCamerasUseCase
 import com.example.domain.use_cases.cameras.RefreshCamerasUseCase

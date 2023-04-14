@@ -1,4 +1,4 @@
-package com.example.domain.repositories
+package com.example.domain.repositories.cameras
 
 import com.example.domain.data.Camera
 import kotlinx.coroutines.flow.Flow
