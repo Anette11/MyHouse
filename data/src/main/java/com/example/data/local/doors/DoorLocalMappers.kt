@@ -12,3 +12,12 @@ fun DoorDbo.toDoor() =
             snapshot = snapshot
         )
     }
+
+fun Door.toDoorDbo() =
+    DoorDbo().apply {
+        favorites = this@toDoorDbo.favorites
+        id = this@toDoorDbo.id
+        name = this@toDoorDbo.name
+        room = this@toDoorDbo.room
+        snapshot = this@toDoorDbo.snapshot
+    }

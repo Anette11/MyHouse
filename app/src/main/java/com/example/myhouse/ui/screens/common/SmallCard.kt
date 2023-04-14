@@ -27,6 +27,7 @@ import kotlin.math.roundToInt
 @Composable
 fun SmallCard(
     text: String,
+    isFavourite: Boolean,
     onEditClick: () -> Unit,
     onFavouriteClick: () -> Unit
 ) {
@@ -78,7 +79,7 @@ fun SmallCard(
                     closeCard()
                     onFavouriteClick()
                 },
-                icon = R.drawable.ic_favourite_off,
+                icon = if (isFavourite) R.drawable.ic_star_off else R.drawable.ic_star_on,
                 tint = R.color.yellow
             )
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._16dp)))
@@ -138,6 +139,7 @@ fun SmallCard(
 fun SmallCardPreview() =
     SmallCard(
         text = stringResource(id = R.string.text_example),
+        isFavourite = true,
         onEditClick = {},
         onFavouriteClick = {}
     )

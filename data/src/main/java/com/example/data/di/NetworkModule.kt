@@ -1,6 +1,7 @@
 package com.example.data.di
 
-import com.example.data.remote.NetworkWebservice
+import com.example.data.remote.cameras.CamerasNetworkWebservice
+import com.example.data.remote.doors.DoorsNetworkWebservice
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +35,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNetworkWebservice(
+    fun provideDoorsNetworkWebservice(
         httpClient: HttpClient
-    ): NetworkWebservice = NetworkWebservice(httpClient = httpClient)
+    ): DoorsNetworkWebservice = DoorsNetworkWebservice(httpClient = httpClient)
+
+    @Provides
+    @Singleton
+    fun provideCamerasNetworkWebservice(
+        httpClient: HttpClient
+    ): CamerasNetworkWebservice = CamerasNetworkWebservice(httpClient = httpClient)
 }

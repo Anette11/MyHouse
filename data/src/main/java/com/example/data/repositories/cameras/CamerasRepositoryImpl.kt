@@ -3,7 +3,7 @@ package com.example.data.repositories.cameras
 import com.example.data.local.cameras.CamerasDao
 import com.example.data.local.cameras.toCamera
 import com.example.data.local.cameras.toCameraDbo
-import com.example.data.remote.NetworkWebservice
+import com.example.data.remote.cameras.CamerasNetworkWebservice
 import com.example.data.remote.cameras.toCameraDbo
 import com.example.domain.data.Camera
 import com.example.domain.repositories.cameras.CamerasRepository
@@ -14,7 +14,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class CamerasRepositoryImpl @Inject constructor(
-    private val networkWebservice: NetworkWebservice,
+    private val camerasNetworkWebservice: CamerasNetworkWebservice,
     private val camerasDao: CamerasDao
 ) : CamerasRepository {
 
@@ -44,7 +44,7 @@ class CamerasRepositoryImpl @Inject constructor(
             }
 
     private suspend fun fetchCamerasAndSaveInDatabase() {
-        val getCamerasResponse = networkWebservice.getCameras()
+        val getCamerasResponse = camerasNetworkWebservice.getCameras()
         val newCameras = getCamerasResponse.data?.cameras?.map { cameraDto ->
             cameraDto.toCameraDbo()
         } ?: emptyList()

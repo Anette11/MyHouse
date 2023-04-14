@@ -25,6 +25,7 @@ sealed interface ScreenItem {
 
     data class SmallItem(
         val text: String,
+        val isFavourite: Boolean,
         val door: Door
     ) : ScreenItem
 }

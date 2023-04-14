@@ -1,6 +1,5 @@
 package com.example.myhouse.ui.screens.doors
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +13,6 @@ import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,6 +20,7 @@ import com.example.myhouse.R
 import com.example.myhouse.ui.screens.common.EditDialog
 import com.example.myhouse.ui.screens.common.LargeCardSimple
 import com.example.myhouse.ui.screens.common.SmallCard
+import com.example.myhouse.ui.screens.common.Title
 import com.example.myhouse.ui.screens.util.ScreenItem
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -29,7 +28,6 @@ import com.example.myhouse.ui.screens.util.ScreenItem
 fun DoorsScreen(
     viewModel: DoorsViewModel = viewModel()
 ) {
-    val context = LocalContext.current
     val pullRefreshState = rememberPullRefreshState(
         refreshing = viewModel.isRefreshing,
         onRefresh = viewModel::onRefresh
@@ -54,13 +52,15 @@ fun DoorsScreen(
                             status = status
                         )
                     }
-                    is ScreenItem.SmallItem -> SmallCard(
-                        text = screenItem.text,
-                        onEditClick = { viewModel.showEditDialog(door = screenItem.door) },
-                        onFavouriteClick = {
-                            Toast.makeText(context, "onFavouriteClick", Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                    is ScreenItem.SmallItem -> with(screenItem) {
+                        SmallCard(
+                            text = text,
+                            isFavourite = isFavourite,
+                            onEditClick = { viewModel.showEditDialog(door = door) },
+                            onFavouriteClick = { viewModel.updateDoor(door = door) }
+                        )
+                    }
+                    is ScreenItem.TitleItem -> Title(text = screenItem.name)
                     else -> Unit
                 }
             }
