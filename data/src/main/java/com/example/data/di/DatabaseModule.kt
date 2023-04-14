@@ -3,6 +3,7 @@ package com.example.data.di
 import android.content.Context
 import com.example.data.BuildConfig
 import com.example.data.local.cameras.CamerasDao
+import com.example.data.local.doors.DoorsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,5 +31,12 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideDao(realm: Realm): CamerasDao = CamerasDao(realm)
+    fun provideCamerasDao(
+        realm: Realm
+    ): CamerasDao = CamerasDao(realm)
+
+    @Provides
+    fun provideDoorsDao(
+        realm: Realm
+    ): DoorsDao = DoorsDao(realm)
 }
