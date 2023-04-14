@@ -106,6 +106,18 @@ class DoorsViewModel @Inject constructor(
         )
     }
 
+    fun updateDoorName() = launch(mainDispatcher) {
+        val door = showEditDialog
+        door?.let {
+            updateDoorUseCase.invoke(
+                door = door.copy(
+                    name = value.trim()
+                )
+            )
+            hideEditDialog()
+        }
+    }
+
     init {
         getDoorsFromDatabaseAsync()
 

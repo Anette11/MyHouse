@@ -70,7 +70,7 @@ fun DoorsScreen(
             EditDialog(
                 onValueChange = viewModel::onValueChange,
                 onDismiss = viewModel::hideEditDialog,
-                onConfirm = viewModel::hideEditDialog,
+                onConfirm = viewModel::updateDoorName,
                 value = viewModel.value,
                 enableConfirmButton = viewModel.isEnableConfirmButton()
             )
