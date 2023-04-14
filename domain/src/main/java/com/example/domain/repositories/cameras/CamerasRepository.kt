@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CamerasRepository {
 
-    suspend fun getInitialCameras(): Flow<NetworkResult<List<Camera>>>
+    suspend fun getInitialCameras(): Flow<NetworkResult>
 
     suspend fun refreshCameras()
 

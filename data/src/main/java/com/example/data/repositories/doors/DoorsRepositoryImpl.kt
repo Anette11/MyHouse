@@ -20,17 +20,17 @@ class DoorsRepositoryImpl @Inject constructor(
     private val doorsDao: DoorsDao
 ) : DoorsRepository {
 
-    override suspend fun getInitialDoors(): Flow<NetworkResult<List<Door>>> = flow {
-        emit(NetworkResult.Loading())
+    override suspend fun getInitialDoors(): Flow<NetworkResult> = flow {
+        emit(NetworkResult.Loading)
         try {
             when (doorsDao.getDoorsFromDatabase().isNotEmpty()) {
                 true -> Unit
                 false -> fetchDoorsAndSaveInDatabase()
             }
-            emit(NetworkResult.Success(emptyList()))
+            emit(NetworkResult.Success)
         } catch (e: Exception) {
             Timber.d(e.printStackTrace().toString())
-            emit(NetworkResult.Failure())
+            emit(NetworkResult.Failure)
         }
     }
 

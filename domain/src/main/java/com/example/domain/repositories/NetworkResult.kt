@@ -1,10 +1,10 @@
 package com.example.domain.repositories
 
-sealed interface NetworkResult<T> {
+sealed interface NetworkResult {
 
-    data class Success<T>(val list: List<T>) : NetworkResult<T>
+    object Success : NetworkResult
 
-    class Failure<T> : NetworkResult<T>
+    object Failure : NetworkResult
 
-    class Loading<T> : NetworkResult<T>
+    object Loading : NetworkResult
 }

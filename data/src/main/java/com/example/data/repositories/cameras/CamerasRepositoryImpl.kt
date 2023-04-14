@@ -20,17 +20,17 @@ class CamerasRepositoryImpl @Inject constructor(
     private val camerasDao: CamerasDao
 ) : CamerasRepository {
 
-    override suspend fun getInitialCameras(): Flow<NetworkResult<List<Camera>>> = flow {
-        emit(NetworkResult.Loading())
+    override suspend fun getInitialCameras(): Flow<NetworkResult> = flow {
+        emit(NetworkResult.Loading)
         try {
             when (camerasDao.getCamerasFromDatabase().isNotEmpty()) {
                 true -> Unit
                 false -> fetchCamerasAndSaveInDatabase()
             }
-            emit(NetworkResult.Success(emptyList()))
+            emit(NetworkResult.Success)
         } catch (e: Exception) {
             Timber.d(e.printStackTrace().toString())
-            emit(NetworkResult.Failure())
+            emit(NetworkResult.Failure)
         }
     }
 

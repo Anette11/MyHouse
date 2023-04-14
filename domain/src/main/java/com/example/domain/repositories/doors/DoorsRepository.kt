@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface DoorsRepository {
 
-    suspend fun getInitialDoors(): Flow<NetworkResult<List<Door>>>
+    suspend fun getInitialDoors(): Flow<NetworkResult>
 
     suspend fun refreshDoors()
 
