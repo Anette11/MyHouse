@@ -7,9 +7,8 @@ import io.realm.annotations.RealmClass
 @RealmClass
 open class CameraDbo : RealmModel {
     @PrimaryKey
-    var dbId: String? = null
-    var favorites: Boolean? = null
     var id: Int? = null
+    var favorites: Boolean? = null
     var name: String? = null
     var rec: Boolean? = null
     var room: String? = null

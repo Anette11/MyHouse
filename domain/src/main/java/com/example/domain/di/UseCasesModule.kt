@@ -2,10 +2,7 @@ package com.example.domain.di
 
 import com.example.domain.repositories.CamerasRepository
 import com.example.domain.repositories.DoorsRepository
-import com.example.domain.use_cases.GetCamerasFromDatabaseUseCaseAsync
-import com.example.domain.use_cases.GetDoorsUseCase
-import com.example.domain.use_cases.GetInitialCamerasUseCase
-import com.example.domain.use_cases.RefreshCamerasUseCase
+import com.example.domain.use_cases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,4 +32,9 @@ class UseCasesModule {
     fun provideGetDoorsUseCase(
         repository: DoorsRepository
     ): GetDoorsUseCase = GetDoorsUseCase(repository = repository)
+
+    @Provides
+    fun provideUpdateCameraUseCase(
+        repository: CamerasRepository
+    ): UpdateCameraUseCase = UpdateCameraUseCase(repository = repository)
 }

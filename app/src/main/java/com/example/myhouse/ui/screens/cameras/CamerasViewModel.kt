@@ -5,9 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.data.di.MainDispatcher
+import com.example.domain.data.Camera
 import com.example.domain.use_cases.GetCamerasFromDatabaseUseCaseAsync
 import com.example.domain.use_cases.GetInitialCamerasUseCase
 import com.example.domain.use_cases.RefreshCamerasUseCase
+import com.example.domain.use_cases.UpdateCameraUseCase
 import com.example.myhouse.ui.screens.util.ScreenItem
 import com.example.myhouse.util.launch
 import com.example.myhouse.util.toBooleanOrDefault
@@ -21,6 +23,7 @@ class CamerasViewModel @Inject constructor(
     private val getInitialCamerasUseCase: GetInitialCamerasUseCase,
     private val refreshCamerasUseCase: RefreshCamerasUseCase,
     private val getCamerasFromDatabaseUseCaseAsync: GetCamerasFromDatabaseUseCaseAsync,
+    private val updateCameraUseCase: UpdateCameraUseCase,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
@@ -56,13 +59,22 @@ class CamerasViewModel @Inject constructor(
                                 image = camera.snapshot,
                                 name = camera.name.toStringOrDefault(),
                                 isRec = camera.rec.toBooleanOrDefault(),
-                                isFavourite = camera.favorites.toBooleanOrDefault()
+                                isFavourite = camera.favorites.toBooleanOrDefault(),
+                                camera = camera
                             )
                         )
                     }
             }.distinct()
             this@CamerasViewModel.screenItems = screenItems
         }
+    }
+
+    fun updateCamera(camera: Camera) = launch(mainDispatcher) {
+        updateCameraUseCase.invoke(
+            camera = camera.copy(
+                favorites = camera.favorites?.not() ?: true
+            )
+        )
     }
 
     init {

@@ -1,5 +1,6 @@
 package com.example.myhouse.ui.screens.util
 
+import com.example.domain.data.Camera
 import com.example.domain.data.Door
 
 sealed interface ScreenItem {
@@ -8,7 +9,8 @@ sealed interface ScreenItem {
         val image: Any?,
         val name: String,
         val isRec: Boolean,
-        val isFavourite: Boolean
+        val isFavourite: Boolean,
+        val camera: Camera
     ) : ScreenItem
 
     data class TitleItem(

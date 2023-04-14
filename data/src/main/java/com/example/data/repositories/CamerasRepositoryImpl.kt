@@ -2,6 +2,7 @@ package com.example.data.repositories
 
 import com.example.data.local.cameras.CamerasDao
 import com.example.data.local.mappers.toCamera
+import com.example.data.local.mappers.toCameraDbo
 import com.example.data.remote.NetworkWebservice
 import com.example.data.remote.mappers.toCameraDbo
 import com.example.domain.data.Camera
@@ -42,12 +43,15 @@ class CamerasRepositoryImpl @Inject constructor(
                     .map { cameraDbo -> cameraDbo.toCamera() }
             }
 
-
     private suspend fun fetchCamerasAndSaveInDatabase() {
         val getCamerasResponse = networkWebservice.getCameras()
         val newCameras = getCamerasResponse.data?.cameras?.map { cameraDto ->
             cameraDto.toCameraDbo()
         } ?: emptyList()
         camerasDao.updateCamerasInDatabase(newList = newCameras)
+    }
+
+    override suspend fun updateCamera(camera: Camera) {
+        camerasDao.updateCamera(camera.toCameraDbo())
     }
 }

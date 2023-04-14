@@ -1,6 +1,5 @@
 package com.example.myhouse.ui.screens.cameras
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +13,6 @@ import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -28,7 +26,6 @@ import com.example.myhouse.ui.screens.util.ScreenItem
 fun CamerasScreen(
     viewModel: CamerasViewModel = viewModel()
 ) {
-    val context = LocalContext.current
     val pullRefreshState = rememberPullRefreshState(
         refreshing = viewModel.isRefreshing,
         onRefresh = viewModel::onRefresh
@@ -51,10 +48,7 @@ fun CamerasScreen(
                             name = name,
                             isRec = isRec,
                             isFavourite = isFavourite,
-                            onFavouriteClick = {
-                                Toast.makeText(context, "onFavouriteClick", Toast.LENGTH_SHORT)
-                                    .show()
-                            }
+                            onFavouriteClick = { viewModel.updateCamera(camera = camera) }
                         )
                     }
                     is ScreenItem.TitleItem -> Title(text = screenItem.name)

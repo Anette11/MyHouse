@@ -26,4 +26,10 @@ class CamerasDao(
     fun getListCameraDboFromRealmResult(
         realmResults: RealmResults<CameraDbo>
     ): List<CameraDbo> = realm.copyFromRealm(realmResults)
+
+    fun updateCamera(
+        cameraDbo: CameraDbo
+    ): RealmAsyncTask = realm.executeTransactionAsync { realm ->
+        realm.insertOrUpdate(cameraDbo)
+    }
 }

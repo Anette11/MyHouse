@@ -10,7 +10,6 @@ import java.util.*
 
 fun CameraDto.toCameraDbo() =
     CameraDbo().apply {
-        dbId = UUID.randomUUID().toString()
         favorites = this@toCameraDbo.favorites
         id = this@toCameraDbo.id
         name = this@toCameraDbo.name
