@@ -1,9 +1,6 @@
-package com.example.data.local.mappers
+package com.example.data.local.cameras
 
-import com.example.data.local.cameras.CameraDbo
-import com.example.data.local.doors.DoorDbo
 import com.example.domain.data.Camera
-import com.example.domain.data.Door
 
 fun CameraDbo.toCamera() =
     with(this) {
@@ -26,15 +23,4 @@ fun Camera.toCameraDbo() =
         rec = this@toCameraDbo.rec
         room = this@toCameraDbo.room
         snapshot = this@toCameraDbo.snapshot
-    }
-
-fun DoorDbo.toDoor() =
-    with(this) {
-        Door(
-            favorites = favorites,
-            id = id,
-            name = name,
-            room = room,
-            snapshot = snapshot
-        )
     }

@@ -1,7 +1,7 @@
 package com.example.data.repositories
 
 import com.example.data.remote.NetworkWebservice
-import com.example.data.remote.mappers.toDoor
+import com.example.data.remote.doors.toDoor
 import com.example.domain.data.Door
 import com.example.domain.repositories.DoorsRepository
 import timber.log.Timber
