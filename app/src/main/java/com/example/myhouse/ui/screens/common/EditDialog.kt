@@ -62,6 +62,9 @@ fun EditDialog(
                 )
                 Spacer(modifier = Modifier.height(height = dimensionResource(id = R.dimen._21dp)))
                 OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = dimensionResource(id = R.dimen._16dp)),
                     value = value,
                     label = {
                         Text(
