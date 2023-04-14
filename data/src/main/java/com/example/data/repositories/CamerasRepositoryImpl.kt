@@ -1,31 +1,26 @@
 package com.example.data.repositories
 
-import com.example.data.local.cameras.CameraDbo
+import com.example.data.local.cameras.CamerasDao
 import com.example.data.local.mappers.toCamera
 import com.example.data.remote.NetworkWebservice
 import com.example.data.remote.mappers.toCameraDbo
 import com.example.domain.data.Camera
 import com.example.domain.repositories.CamerasRepository
-import io.realm.Realm
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.asFlow
 import timber.log.Timber
 import javax.inject.Inject
 
 class CamerasRepositoryImpl @Inject constructor(
     private val networkWebservice: NetworkWebservice,
-    private val realm: Realm
+    private val camerasDao: CamerasDao
 ) : CamerasRepository {
 
     override suspend fun getInitialCameras() =
         try {
-            val camerasInDBIsNotEmpty = realm
-                .where(CameraDbo::class.java)
-                .findAll()
-                .isNotEmpty()
-            when (camerasInDBIsNotEmpty) {
+            when (camerasDao.getCamerasFromDatabase().isNotEmpty()) {
                 true -> Unit
-                false -> fetchCamerasAnSaveInDatabase()
+                false -> fetchCamerasAndSaveInDatabase()
             }
         } catch (e: Exception) {
             Timber.d(e.printStackTrace().toString())
@@ -33,27 +28,21 @@ class CamerasRepositoryImpl @Inject constructor(
 
     override suspend fun refreshCameras() =
         try {
-            fetchCamerasAnSaveInDatabase()
+            fetchCamerasAndSaveInDatabase()
         } catch (e: Exception) {
             Timber.d(e.printStackTrace().toString())
         }
 
-    override suspend fun getCamerasFromDatabase(): Flow<List<Camera>> = flow {
-        val cameras = realm.where(CameraDbo::class.java)
-            .findAll()
-            .toList()
+    override suspend fun getCamerasFromDatabaseAsync(): Flow<Camera> =
+        camerasDao.getCamerasFromDatabaseAsync()
             .map { cameraDbo -> cameraDbo.toCamera() }
-        emit(cameras)
-    }
+            .asFlow()
 
-    private suspend fun fetchCamerasAnSaveInDatabase() {
+    private suspend fun fetchCamerasAndSaveInDatabase() {
         val getCamerasResponse = networkWebservice.getCameras()
         val newCameras = getCamerasResponse.data?.cameras?.map { cameraDto ->
             cameraDto.toCameraDbo()
         } ?: emptyList()
-        realm.executeTransactionAsync {
-            it.delete(CameraDbo::class.java)
-            it.insert(newCameras)
-        }
+        camerasDao.updateCamerasInDatabase(newList = newCameras)
     }
 }

@@ -2,7 +2,7 @@ package com.example.domain.di
 
 import com.example.domain.repositories.CamerasRepository
 import com.example.domain.repositories.DoorsRepository
-import com.example.domain.use_cases.GetCamerasFromDatabaseUseCase
+import com.example.domain.use_cases.GetCamerasFromDatabaseUseCaseAsync
 import com.example.domain.use_cases.GetDoorsUseCase
 import com.example.domain.use_cases.GetInitialCamerasUseCase
 import com.example.domain.use_cases.RefreshCamerasUseCase
@@ -28,7 +28,8 @@ class UseCasesModule {
     @Provides
     fun provideGetCamerasFromDatabaseUseCase(
         repository: CamerasRepository
-    ): GetCamerasFromDatabaseUseCase = GetCamerasFromDatabaseUseCase(repository = repository)
+    ): GetCamerasFromDatabaseUseCaseAsync =
+        GetCamerasFromDatabaseUseCaseAsync(repository = repository)
 
     @Provides
     fun provideGetDoorsUseCase(
