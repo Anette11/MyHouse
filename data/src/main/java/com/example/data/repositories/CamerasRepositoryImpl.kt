@@ -6,8 +6,9 @@ import com.example.data.remote.NetworkWebservice
 import com.example.data.remote.mappers.toCameraDbo
 import com.example.domain.data.Camera
 import com.example.domain.repositories.CamerasRepository
+import io.realm.kotlin.toFlow
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -33,10 +34,14 @@ class CamerasRepositoryImpl @Inject constructor(
             Timber.d(e.printStackTrace().toString())
         }
 
-    override suspend fun getCamerasFromDatabaseAsync(): Flow<Camera> =
+    override suspend fun getCamerasFromDatabaseAsync(): Flow<List<Camera>> =
         camerasDao.getCamerasFromDatabaseAsync()
-            .map { cameraDbo -> cameraDbo.toCamera() }
-            .asFlow()
+            .toFlow()
+            .map { realmResults ->
+                camerasDao.getListCameraDboFromRealmResult(realmResults)
+                    .map { cameraDbo -> cameraDbo.toCamera() }
+            }
+
 
     private suspend fun fetchCamerasAndSaveInDatabase() {
         val getCamerasResponse = networkWebservice.getCameras()

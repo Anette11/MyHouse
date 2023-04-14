@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.data.di.MainDispatcher
-import com.example.domain.data.Camera
 import com.example.domain.use_cases.GetCamerasFromDatabaseUseCaseAsync
 import com.example.domain.use_cases.GetInitialCamerasUseCase
 import com.example.domain.use_cases.RefreshCamerasUseCase
@@ -25,9 +24,6 @@ class CamerasViewModel @Inject constructor(
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    var cameras by mutableStateOf(mutableListOf<Camera>())
-        private set
-
     var screenItems by mutableStateOf(emptyList<ScreenItem>())
         private set
 
@@ -45,10 +41,9 @@ class CamerasViewModel @Inject constructor(
     }
 
     private fun getCamerasFromDatabaseAsync() = launch(mainDispatcher) {
-        getCamerasFromDatabaseUseCaseAsync.invoke().collect { camera ->
-            cameras.add(camera)
+        getCamerasFromDatabaseUseCaseAsync.invoke().collect { camerasList ->
             val screenItems = buildList {
-                cameras
+                camerasList
                     .sortedBy { camera -> camera.room }
                     .forEach { camera ->
                         add(

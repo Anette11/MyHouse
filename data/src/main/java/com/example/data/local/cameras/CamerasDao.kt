@@ -22,4 +22,8 @@ class CamerasDao(
     fun getCamerasFromDatabaseAsync(): RealmResults<CameraDbo> =
         realm.where(CameraDbo::class.java)
             .findAllAsync()
+
+    fun getListCameraDboFromRealmResult(
+        realmResults: RealmResults<CameraDbo>
+    ): List<CameraDbo> = realm.copyFromRealm(realmResults)
 }

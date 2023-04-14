@@ -9,5 +9,5 @@ interface CamerasRepository {
 
     suspend fun refreshCameras()
 
-    suspend fun getCamerasFromDatabaseAsync(): Flow<Camera>
+    suspend fun getCamerasFromDatabaseAsync(): Flow<List<Camera>>
 }
