@@ -74,7 +74,8 @@ fun DoorsScreen(
                 onDismiss = viewModel::hideEditDialog,
                 onConfirm = viewModel::updateDoorName,
                 value = viewModel.value,
-                enableConfirmButton = viewModel.isEnableConfirmButton()
+                enableConfirmButton = viewModel.isEnableConfirmButton(),
+                onClearText = viewModel::onClearText
             )
         }
         PullRefreshIndicator(

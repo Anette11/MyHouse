@@ -3,10 +3,13 @@ package com.example.myhouse.ui.screens.common
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,7 +32,8 @@ fun EditDialog(
     onDismiss: () -> Unit,
     onConfirm: () -> Unit,
     value: String,
-    enableConfirmButton: Boolean
+    enableConfirmButton: Boolean,
+    onClearText: () -> Unit
 ) = Dialog(
     onDismissRequest = {}
 ) {
@@ -63,6 +67,14 @@ fun EditDialog(
                         Text(
                             text = stringResource(id = R.string.edit_dialog_label),
                             fontFamily = FontFamily(Font(R.font.circle_regular))
+                        )
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = stringResource(id = R.string.empty),
+                            tint = colorResource(id = R.color.gray_lighter),
+                            modifier = Modifier.clickable { onClearText() }
                         )
                     },
                     onValueChange = onValueChange,
@@ -148,5 +160,6 @@ fun EditDialogPreview() =
         onDismiss = {},
         onConfirm = {},
         value = stringResource(id = R.string.empty),
-        enableConfirmButton = false
+        enableConfirmButton = false,
+        onClearText = {}
     )

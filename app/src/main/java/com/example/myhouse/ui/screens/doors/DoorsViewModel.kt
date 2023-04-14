@@ -65,6 +65,10 @@ class DoorsViewModel @Inject constructor(
         value = newValue
     }
 
+    fun onClearText() {
+        value = resourcesProvider.getString(R.string.empty)
+    }
+
     fun isEnableConfirmButton(): Boolean = value.isNotBlank()
 
     private fun getDoorsFromDatabaseAsync() = launch(mainDispatcher) {
