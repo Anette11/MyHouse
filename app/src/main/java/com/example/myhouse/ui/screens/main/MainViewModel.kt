@@ -4,7 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.myhouse.navigation.Screen
+import com.example.myhouse.ui.screens.util.Screen
 
 class MainViewModel : ViewModel() {
 

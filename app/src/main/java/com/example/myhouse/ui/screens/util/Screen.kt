@@ -1,4 +1,4 @@
-package com.example.myhouse.navigation
+package com.example.myhouse.ui.screens.util
 
 sealed class Screen(
     val tabName: String
