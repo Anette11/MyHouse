@@ -1,19 +1,19 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id(Plugins.com_android_library)
+    id(Plugins.org_jetbrains_kotlin_android)
+    id(Plugins.kotlin_kapt)
+    id(Plugins.com_google_dagger_hilt_android)
 }
 
 android {
-    namespace = "com.example.domain"
-    compileSdk = 33
+    namespace = ConfigVersions.namespace_domain
+    compileSdk = ConfigVersions.compileSdk
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = ConfigVersions.minSdk
+        targetSdk = ConfigVersions.targetSdk
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = ConfigVersions.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -27,18 +27,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = ConfigVersions.compileOptions_sourceCompatibility
+        targetCompatibility = ConfigVersions.compileOptions_targetCompatibility
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ConfigVersions.jvmTarget
     }
 }
 
 dependencies {
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
+    implementation(Dependencies.com_google_dagger_hilt_android)
+    kapt(Dependencies.com_google_dagger_hilt_compiler)
 }
 
 kapt {
