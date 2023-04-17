@@ -16,15 +16,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.myhouse.R
 import com.example.myhouse.ui.screens.common.EditDialog
 import com.example.myhouse.ui.screens.common.LargeCardSimple
 import com.example.myhouse.ui.screens.common.SmallCard
 import com.example.myhouse.ui.screens.common.Title
 import com.example.myhouse.ui.screens.util.ScreenItem
+import com.example.myhouse.ui.theme.BlueSky
+import com.example.myhouse.ui.theme.dimens
 import com.example.myhouse.util.showToast
 import kotlinx.coroutines.flow.collectLatest
 
@@ -53,7 +52,7 @@ fun DoorsScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = dimensionResource(id = R.dimen._21dp))
+                .padding(horizontal = dimens._21dp)
         ) {
             items(viewModel.screenItems) { screenItem ->
                 when (screenItem) {
@@ -94,7 +93,7 @@ fun DoorsScreen(
             refreshing = viewModel.isRefreshing,
             state = pullRefreshState,
             modifier = Modifier.align(Alignment.TopCenter),
-            contentColor = colorResource(id = R.color.blue_sky)
+            contentColor = BlueSky
         )
 
         if (viewModel.isLoading) {
@@ -102,7 +101,7 @@ fun DoorsScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator(color = colorResource(id = R.color.blue_sky))
+                CircularProgressIndicator()
             }
         }
     }

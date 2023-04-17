@@ -1,25 +1,22 @@
 package com.example.myhouse.ui.screens.common
 
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.sp
 import com.example.myhouse.R
+import com.example.myhouse.ui.theme.BlueSky
+import com.example.myhouse.ui.theme.Yellow
+import com.example.myhouse.ui.theme.dimens
+import com.example.myhouse.ui.theme.elevation
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
@@ -71,18 +68,18 @@ fun SmallCard(
                     onEditClick()
                 },
                 icon = R.drawable.ic_edit,
-                tint = R.color.blue_sky
+                tint = BlueSky
             )
-            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._29dp)))
+            Spacer(modifier = Modifier.width(width = dimens._29dp))
             IconButtonCircle(
                 onClick = {
                     closeCard()
                     onFavouriteClick()
                 },
                 icon = if (isFavourite) R.drawable.ic_star_off else R.drawable.ic_star_on,
-                tint = R.color.yellow
+                tint = Yellow
             )
-            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._16dp)))
+            Spacer(modifier = Modifier.width(width = dimens._16dp))
         }
         Box(
             modifier = Modifier
@@ -97,35 +94,31 @@ fun SmallCard(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = dimensionResource(id = R.dimen._8dp)),
-                shape = RoundedCornerShape(dimensionResource(id = R.dimen._12dp)),
-                elevation = dimensionResource(id = R.dimen._4dp)
+                    .padding(vertical = dimens._8dp),
+                elevation = elevation.small
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
-                            vertical = dimensionResource(id = R.dimen._21dp),
-                            horizontal = dimensionResource(id = R.dimen._16dp)
-                        )
-                        .background(color = colorResource(id = R.color.white)),
+                            vertical = dimens._21dp,
+                            horizontal = dimens._16dp
+                        ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         modifier = Modifier.weight(1f),
                         text = text,
-                        fontFamily = FontFamily(Font(R.font.circle_regular)),
-                        fontSize = dimensionResource(id = R.dimen._17sp).value.sp,
-                        color = colorResource(id = R.color.gray_darker)
+                        style = MaterialTheme.typography.subtitle1
                     )
-                    Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen._16dp)))
+                    Spacer(modifier = Modifier.width(width = dimens._16dp))
                     IconButton(
                         onClick = { }
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_lock),
                             contentDescription = stringResource(id = R.string.empty),
-                            tint = colorResource(id = R.color.blue_sky)
+                            tint = BlueSky
                         )
                     }
                 }
@@ -139,12 +132,12 @@ fun SmallCard(
                 ) {
                     Icon(
                         modifier = Modifier.padding(
-                            top = dimensionResource(id = R.dimen._16dp),
-                            end = dimensionResource(id = R.dimen._8dp)
+                            top = dimens._16dp,
+                            end = dimens._8dp
                         ),
                         painter = painterResource(id = R.drawable.ic_star),
                         contentDescription = stringResource(id = R.string.empty),
-                        tint = colorResource(id = R.color.yellow)
+                        tint = Yellow
                     )
                 }
             }

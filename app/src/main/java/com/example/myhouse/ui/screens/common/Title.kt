@@ -2,18 +2,15 @@ package com.example.myhouse.ui.screens.common
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import com.example.myhouse.R
+import com.example.myhouse.ui.theme.dimens
 
 @Composable
 fun Title(
@@ -21,11 +18,9 @@ fun Title(
 ) = Text(
     modifier = Modifier
         .fillMaxWidth()
-        .padding(vertical = dimensionResource(id = R.dimen._8dp)),
+        .padding(vertical = dimens._8dp),
     text = text,
-    fontFamily = FontFamily(Font(R.font.circle_light)),
-    fontSize = dimensionResource(id = R.dimen._21sp).value.sp,
-    color = colorResource(id = R.color.gray_dark),
+    style = MaterialTheme.typography.h2,
     textAlign = TextAlign.Start
 )
 
